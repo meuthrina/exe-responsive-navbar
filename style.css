@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  padding: 20px;
+  height: 2em;
+  justify-content: space-between;
+  font-family: "Nunito", sans-serif;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+  font-family: "Manrope", sans-serif;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 10px 15px;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+}
+
+.menu-toogle {
+  display: none;
+  height: 1.5em;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu-toogle input {
+  position: absolute;
+  width: 4em;
+  height: 2em;
+  left: -1em;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.menu-toogle span {
+  display: block;
+  width: 1.5em;
+  height: 0.2em;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+/* Hamburger Menu Animation */
+
+.menu-toogle span:nth-child(2) {
+  transform-origin: 0 0;
+  animation: ease 0.7s toprvr forwards;
+}
+.menu-toogle span:nth-child(3) {
+  transform-origin: 0 0;
+  animation: ease 0.7s scaledrvr forwards;
+}
+.menu-toogle span:nth-child(4) {
+  animation: ease 0.7s botrvr forwards;
+  transform-origin: 50% -175%;
+}
+
+.menu-toogle input:checked ~ span:nth-child(2) {
+  animation: ease 0.7s top forwards;
+  transform: translate(-1px, -1px);
+}
+.menu-toogle input:checked ~ span:nth-child(3) {
+  animation: ease 0.7s scaled forwards;
+}
+.menu-toogle input:checked ~ span:nth-child(4) {
+  animation: ease 0.7s bot forwards;
+  transform: translate(-1px, 0);
+}
+
+/* Keyframe Animation Hamburger */
+@keyframes top {
+  0% {
+    transform: translateY();
+    transform: rotate();
+  }
+  50% {
+    transform: translateY(10px);
+    transform: rotate();
+  }
+  100% {
+    transform: translateY(10px);
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes bot {
+  0% {
+    transform: translateY();
+    transform: rotate();
+  }
+  50% {
+    transform: translateY(-10px);
+    transform: rotate();
+  }
+  100% {
+    transform: translateY(-10px);
+    transform: rotate(135deg);
+  }
+}
+
+@keyframes scaled {
+  50% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes toprvr {
+  0% {
+    transform: translateY(10px);
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: translateY(10px);
+    transform: rotate();
+  }
+  100% {
+    transform: translateY();
+    transform: rotate();
+  }
+}
+
+@keyframes botrvr {
+  0% {
+    transform: translateY(-10px);
+    transform: rotate(135deg);
+  }
+  50% {
+    transform: translateY(-10px);
+    transform: rotate();
+  }
+  100% {
+    transform: translateY();
+    transform: rotate();
+  }
+}
+
+@keyframes scaledrvr {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Responsive Breakpoint */
+
+/* ukuran mobile */
+@media screen and (max-width: 576px) {
+  .menu-toogle {
+    display: flex;
+  }
+  nav ul {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 1);
+    height: 100vh;
+    width: 40%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    z-index: -1;
+    transform: translateX(100%);
+    transition: all 1s;
+    opacity: 0;
+  }
+  nav ul.slide {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
